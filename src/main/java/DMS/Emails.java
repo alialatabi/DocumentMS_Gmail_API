@@ -60,12 +60,12 @@ public class Emails {
                     }
                     MessagePart messagePart = msg.getPayload();
                     String subject = null;
-                    String filename = null;
+                    String filename;
                     String att_text = null;
                     String type = null;
-                    String attId = null;
+                    String attId;
                     String receiver = null;
-                    String dir = null;
+                    String dir ;
                     //getting the date of the email
                     long internaldate = msg.getInternalDate();
                     Date email_date = new Date(internaldate);
@@ -94,7 +94,7 @@ public class Emails {
                         else{
                             List<MessagePart> parts = messagePart.getParts();
                             for (MessagePart part : parts){
-                                if ((part.getFilename() != null && part.getFilename().length() > 0)) {
+                                if (part.getFilename() != null) {
                                     filename = part.getFilename();
                                     attId = part.getBody().getAttachmentId();
                                     MessagePartBody attachPart;
@@ -145,7 +145,6 @@ public class Emails {
                                     pstmt.setString(5,msgid);
                                     pstmt.execute();
                                     conn.close();
-                                    files.delete();
                                     break;
 
                                 }else{
