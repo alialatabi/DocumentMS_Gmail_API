@@ -32,7 +32,7 @@ import java.util.List;
 
 
 public class Main extends Application {
-    private static final String APPLICATION_NAME = "EMSGP";
+    private static final String APPLICATION_NAME = "DMSGP";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
 

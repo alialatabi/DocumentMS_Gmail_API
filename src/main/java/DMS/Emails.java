@@ -94,7 +94,7 @@ public class Emails {
                         else{
                             List<MessagePart> parts = messagePart.getParts();
                             for (MessagePart part : parts){
-                                if (part.getFilename() != null) {
+                                if (part.getFilename() != null && part.getFilename().length() > 0) {
                                     filename = part.getFilename();
                                     attId = part.getBody().getAttachmentId();
                                     MessagePartBody attachPart;
