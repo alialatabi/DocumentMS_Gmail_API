@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="555.0" maxWidth="863.0" minHeight="555.0" minWidth="863.0" prefHeight="555.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DMS.DMSUIController">
+   <children>
+      <Button fx:id="btload" layoutX="719.0" layoutY="31.0" mnemonicParsing="false" onAction="#LM" prefHeight="55.0" prefWidth="113.0" text="Load Mail">
+         <font>
+            <Font name="JetBrains Mono Medium" size="15.0" />
+         </font></Button>
+      <Button fx:id="btsearch" layoutX="199.0" layoutY="33.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="71.0" text="Search">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Button>
+      <TextField fx:id="txtsearch" layoutX="14.0" layoutY="33.0" prefHeight="25.0" prefWidth="174.0">
+         <font>
+            <Font name="JetBrains Mono ExtraLight" size="12.0" />
+         </font></TextField>
+      <RadioButton fx:id="rbsubject" layoutX="14.0" layoutY="67.0" mnemonicParsing="false" onAction="#rdsubject" text="Subject">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="rbsender" layoutX="98.0" layoutY="67.0" mnemonicParsing="false" onAction="#rdsender" text="E-Mail Sender">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="rbattname" layoutX="225.0" layoutY="67.0" mnemonicParsing="false" onAction="#rdattname" text="Attachment Name">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbattcontent" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#rdattcontent" text="Attachment Content">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="rbdate" layoutX="174.0" layoutY="91.0" mnemonicParsing="false" onAction="#rddate" text="Date">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></RadioButton>
+      <DatePicker fx:id="dpdate" layoutX="282.0" layoutY="33.0" visible="false" />
+      <TableView fx:id="tv" layoutX="14.0" layoutY="133.0" onMouseClicked="#doubleClick" prefHeight="412.0" prefWidth="831.0">
+        <columns>
+          <TableColumn fx:id="no" prefWidth="35.199995040893555" text="#" />
+          <TableColumn fx:id="subject" prefWidth="92.00000762939453" text="Subject" />
+            <TableColumn fx:id="sender" prefWidth="142.0" text="From" />
+            <TableColumn fx:id="recever" prefWidth="75.60000610351562" text="To" />
+            <TableColumn fx:id="body" prefWidth="105.60000610351562" text="Body" />
+            <TableColumn fx:id="date" minWidth="3.20001220703125" prefWidth="100.59994506835938" text="Date" />
+            <TableColumn fx:id="name" prefWidth="142.20001220703125" text="File Name" />
+            <TableColumn fx:id="type" prefWidth="79.0" text="File Type" />
+            <TableColumn fx:id="eid" prefWidth="43.0" text="eid" visible="false" />
+        </columns>
+      </TableView>
+      <RadioButton fx:id="rbbody" layoutX="238.0" layoutY="91.0" mnemonicParsing="false" onAction="#rdbody" text="Body">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font>
+      </RadioButton>
+      <Label fx:id="noE" layoutX="595.0" layoutY="91.0" textFill="#d52828">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

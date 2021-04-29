@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DMS.DetailsController">
+   <children>
+      <TextArea fx:id="dfilecontent" editable="false" layoutX="12.0" layoutY="135.0" prefHeight="363.0" prefWidth="764.0">
+         <font>
+            <Font name="JetBrains Mono Medium" size="14.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="download" layoutX="636.0" layoutY="507.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="29.0" prefWidth="131.0" text="Download File">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Button>
+      <Label fx:id="dsubject" layoutX="14.0" layoutY="31.0" maxWidth="250.0" text="Subject: ">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Label>
+      <Label fx:id="dfrom" contentDisplay="CENTER" layoutX="258.0" layoutY="31.0" maxWidth="350.0" text="From: ">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Label>
+      <Label fx:id="ddate" layoutX="628.0" layoutY="31.0" text="Date: ">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Label>
+      <Label fx:id="dfilename" layoutX="14.0" layoutY="74.0" maxWidth="500.0" text="File Name: ">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Label>
+      <Label layoutX="337.0" layoutY="105.0" text="File Content">
+         <font>
+            <Font name="JetBrains Mono Medium" size="12.0" />
+         </font></Label>
+   </children>
+</Pane>
