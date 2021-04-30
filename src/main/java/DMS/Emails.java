@@ -94,7 +94,7 @@ public class Emails {
                         else{
                             List<MessagePart> parts = messagePart.getParts();
                             for (MessagePart part : parts){
-                                if (part.getFilename() != null && part.getFilename().length() > 0) {
+                                if (part.getBody().getAttachmentId() != null) {
                                     filename = part.getFilename();
                                     attId = part.getBody().getAttachmentId();
                                     MessagePartBody attachPart;
@@ -146,11 +146,11 @@ public class Emails {
                                     pstmt.execute();
                                     conn.close();
                                     break;
-
-                                }else{
-                                    insert_email(msgid,sender,receiver,subject,body,stringdate);
                                 }
+
                             }
+
+                            insert_email(msgid,sender,receiver,subject,body,stringdate);
                         }
                     }
                     service.users().messages().delete(user,msgid).execute();
@@ -165,7 +165,7 @@ public class Emails {
     //insert data in the database method
     public static void insert_email(String msgid, String sender, String receiver, String subject, String body, String date) throws SQLException {
         String insert_email_query = "INSERT INTO email VALUES ('"+msgid+"', '"+sender+"', '"+receiver+"', '"+subject+"', '"+body+"', '"+date+"');";
-        Connection conn = null;
+        Connection conn = DMSUIController.getConnection();
         Statement stm;
         stm = conn.createStatement();
         stm.executeUpdate(insert_email_query);
