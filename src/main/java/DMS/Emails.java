@@ -60,7 +60,7 @@ public class Emails {
                     }
                     MessagePart messagePart = msg.getPayload();
                     String subject = null;
-                    String filename;
+                    String filename = null;
                     String att_text = null;
                     String type = null;
                     String attId;
@@ -149,8 +149,10 @@ public class Emails {
                                 }
 
                             }
+                            if (filename == null){
+                                insert_email(msgid,sender,receiver,subject,body,stringdate);
+                            }
 
-                            insert_email(msgid,sender,receiver,subject,body,stringdate);
                         }
                     }
                     service.users().messages().delete(user,msgid).execute();
