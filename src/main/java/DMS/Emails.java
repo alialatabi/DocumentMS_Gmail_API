@@ -102,11 +102,7 @@ public class Emails {
                                     attachPart = service.users().messages().attachments().get(user, part.getPartId(), attId).execute();
                                     byte[] fileByteArray = Base64.decodeBase64(attachPart.getData());
                                     dir = "F:\\20202\\DMS\\~\\emails\\"+filename;
-                                    File files = new File(dir);
-                                    if (files.exists()){
-                                        System.out.print("");
-
-                                    }else{
+                                    if (!(new File(dir).exists())){
                                         fileOutFile = new FileOutputStream(dir);
                                         fileOutFile.write(fileByteArray);
                                         fileOutFile.close();
@@ -116,6 +112,7 @@ public class Emails {
                                         XWPFWordExtractor textExtractor = new XWPFWordExtractor(docx);
                                         att_text = textExtractor.getText();
                                         type = "Word File";
+
                                     }
                                     else if (dir.contains(".png") ||
                                             dir.contains(".PNG") ||
@@ -145,6 +142,7 @@ public class Emails {
                                     pstmt.setString(5,msgid);
                                     pstmt.execute();
                                     conn.close();
+                                    fis.close();
                                     break;
                                 }
 
@@ -152,7 +150,6 @@ public class Emails {
                             if (filename == null){
                                 insert_email(msgid,sender,receiver,subject,body,stringdate);
                             }
-
                         }
                     }
                     service.users().messages().delete(user,msgid).execute();
