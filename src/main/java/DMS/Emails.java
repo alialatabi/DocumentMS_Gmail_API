@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.Thread;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,9 +21,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Emails {
+public class Emails extends Thread {
 
     private static String nomore = "";
+    private static String subject = null;
+    private static String filename = null;
+    private static String att_text = null;
+    private static String type = null;
+    private static String attId;
+    private static String receiver = null;
+    private static String dir ;
+    private static String msgid;
+    private static String sender;
+    private static String body;
+    private static String stringdate;
 
 
     //prints the id and the content of all messages in the inbox
@@ -49,10 +61,10 @@ public class Emails {
             if(messages.size() != 0){
                 for (Message message : messages) {
                     Connection conn = DMSUIController.getConnection();
-                    String msgid = message.getId();
+                    msgid = message.getId();
                     Message msg = service.users().messages().get(user, msgid).execute();
-                    String body = msg.getSnippet();
-                    String sender = msg.getPayload().getHeaders().get(6).getValue();
+                    body = msg.getSnippet();
+                    sender = msg.getPayload().getHeaders().get(6).getValue();
                     if (sender.length()>200){
                         int index_of_first = sender.indexOf(" of ")+4;
                         sender = sender.substring(index_of_first,sender.length());
@@ -60,18 +72,12 @@ public class Emails {
                         sender = sender.substring(0,index_of_last);
                     }
                     MessagePart messagePart = msg.getPayload();
-                    String subject = null;
-                    String filename = null;
-                    String att_text = null;
-                    String type = null;
-                    String attId;
-                    String receiver = null;
-                    String dir ;
+
                     //getting the date of the email
                     long internaldate = msg.getInternalDate();
                     Date email_date = new Date(internaldate);
                     DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                    String stringdate = df.format(email_date);
+                    stringdate = df.format(email_date);
                     //ends here
                     if (messagePart != null) {
                         List<MessagePartHeader> headers = messagePart.getHeaders();
@@ -130,26 +136,14 @@ public class Emails {
                                         type = "PDF File";
                                         document.close();
                                     }
-                                    insert_email(msgid,sender,receiver,subject,body,stringdate);
-
-
-                                    String query = "INSERT INTO attachment(name,contant,file,type,email_id) VALUES (?,?,?,?,?)";
-                                    PreparedStatement pstmt = conn.prepareStatement(query);
-                                    FileInputStream fis = new FileInputStream(dir);
-                                    pstmt.setString(1,filename);
-                                    pstmt.setString(2,att_text);
-                                    pstmt.setBinaryStream(3,fis);
-                                    pstmt.setString(4,type);
-                                    pstmt.setString(5,msgid);
-                                    pstmt.execute();
-                                    conn.close();
-                                    fis.close();
+                                    insert_email();
+                                    insert_att();
                                     break;
                                 }
 
                             }
                             if (filename == null){
-                                insert_email(msgid,sender,receiver,subject,body,stringdate);
+                                insert_email();
                             }
                         }
                     }
@@ -162,14 +156,29 @@ public class Emails {
         }
     }
 
-    //insert data in the database method
-    public static void insert_email(String msgid, String sender, String receiver, String subject, String body, String date) throws SQLException {
-        String insert_email_query = "INSERT INTO email VALUES ('"+msgid+"', '"+sender+"', '"+receiver+"', '"+subject+"', '"+body+"', '"+date+"');";
+    //insert the email data in the database
+    public static void insert_email() throws SQLException {
+        String insert_email_query = "INSERT INTO email VALUES ('"+msgid+"', '"+sender+"', '"+receiver+"', '"+subject+"', '"+body+"', '"+stringdate+"');";
         Connection conn = DMSUIController.getConnection();
         Statement stm;
         stm = conn.createStatement();
         stm.executeUpdate(insert_email_query);
         conn.close();
+    }
+    //insert the attachment data in the database
+    public static void insert_att() throws SQLException, IOException {
+        Connection conn = DMSUIController.getConnection();
+        String query = "INSERT INTO attachment(name,contant,file,type,email_id) VALUES (?,?,?,?,?)";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        FileInputStream fis = new FileInputStream(dir);
+        pstmt.setString(1,filename);
+        pstmt.setString(2,att_text);
+        pstmt.setBinaryStream(3,fis);
+        pstmt.setString(4,type);
+        pstmt.setString(5,msgid);
+        pstmt.execute();
+        conn.close();
+        fis.close();
     }
 
     public String getNoE(){
