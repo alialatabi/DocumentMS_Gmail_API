@@ -12,6 +12,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+
 public class DetailsController implements Initializable {
     @FXML
     private TextArea dfilecontent;
@@ -24,6 +25,7 @@ public class DetailsController implements Initializable {
     @FXML
     private Label dfilename;
 
+    String UserName = System.getProperty("user.name");
     String email_id;
     Connection conn;
     Statement stm = null;
@@ -65,7 +67,7 @@ public class DetailsController implements Initializable {
             byte[] bt = new byte[available];
             in.read(bt);
 
-            FileOutputStream fout = new FileOutputStream("C:\\Users\\LENOVO\\Downloads\\"+rs.getString("name"));
+            FileOutputStream fout = new FileOutputStream("C:\\Users\\" + UserName + "\\Downloads\\"+rs.getString("name"));
             DataOutputStream dout = new DataOutputStream(fout);
             dout.write(bt,0,bt.length);
             fout.close();

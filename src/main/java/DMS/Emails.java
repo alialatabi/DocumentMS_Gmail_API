@@ -24,6 +24,7 @@ public class Emails {
 
     private static String nomore = "";
 
+
     //prints the id and the content of all messages in the inbox
     public static void getEmails(Gmail service, String user){
         try{
@@ -101,7 +102,7 @@ public class Emails {
                                     FileOutputStream fileOutFile;
                                     attachPart = service.users().messages().attachments().get(user, part.getPartId(), attId).execute();
                                     byte[] fileByteArray = Base64.decodeBase64(attachPart.getData());
-                                    dir = "F:\\20202\\DMS\\~\\emails\\"+filename;
+                                    dir = System.getProperty("user.dir")+"\\src\\main\\resources\\~\\emails\\"+filename;
                                     if (!(new File(dir).exists())){
                                         fileOutFile = new FileOutputStream(dir);
                                         fileOutFile.write(fileByteArray);
