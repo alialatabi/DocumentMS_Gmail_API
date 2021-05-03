@@ -1,8 +1,7 @@
 package DMS;
 
-public class Threading implements Runnable{
+public class Threading extends Thread{
 
-    @Override
     public void run() {
 
     }

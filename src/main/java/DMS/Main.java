@@ -18,9 +18,13 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
@@ -28,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,8 +48,14 @@ public class Main extends Application {
      */
     private static final List<String> SCOPES = Collections.singletonList(GmailScopes.MAIL_GOOGLE_COM);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+    @FXML
+    private TextField uname;
+    @FXML
+    private TextField pass;
+    @FXML
+    private Button btlogin;
 
-      /**
+    /**
      * Creates an authorized Credential object.
      * @param HTTP_TRANSPORT The network HTTP Transport.
      * @return An authorized Credential object.
@@ -87,13 +98,29 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Document Management System");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
+
+    @FXML
+    private void login(ActionEvent event) throws IOException {
+        String username = "ali";
+        String password = "a1234";
+//        if (username == uname.getText().toString() && password == pass.getText().toString()){
+            Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
+
+            Scene main = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Document Management System");
+            stage.setScene(main);
+            stage.show();
+//        }
+    }
 }

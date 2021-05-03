@@ -23,13 +23,13 @@ import java.util.List;
 
 public class Emails extends Thread {
 
-    private static String nomore = "";
-    private static String subject = null;
-    private static String filename = null;
-    private static String att_text = null;
-    private static String type = null;
+    private static String nomore;
+    private static String subject;
+    private static String filename;
+    private static String att_text;
+    private static String type;
     private static String attId;
-    private static String receiver = null;
+    private static String receiver;
     private static String dir ;
     private static String msgid;
     private static String sender;
