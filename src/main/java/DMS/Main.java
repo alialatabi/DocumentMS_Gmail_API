@@ -98,7 +98,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Document Management System");
         primaryStage.setResizable(false);
@@ -112,7 +112,7 @@ public class Main extends Application {
     private void login(ActionEvent event) throws IOException {
         String username = "ali";
         String password = "a1234";
-//        if (username == uname.getText().toString() && password == pass.getText().toString()){
+        if (username == uname.getText().toString() && password == pass.getText().toString()){
             Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
 
             Scene main = new Scene(root);
@@ -121,6 +121,6 @@ public class Main extends Application {
             stage.setTitle("Document Management System");
             stage.setScene(main);
             stage.show();
-//        }
+        }
     }
 }
