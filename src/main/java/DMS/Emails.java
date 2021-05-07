@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Emails extends Thread {
+public class Emails {
 
     private static String nomore;
     private static String subject;
