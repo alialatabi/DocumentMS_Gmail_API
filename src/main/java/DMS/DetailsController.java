@@ -4,9 +4,11 @@ package DMS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.sql.*;
@@ -29,6 +31,10 @@ public class DetailsController implements Initializable {
     String email_id;
     Connection conn;
     Statement stm = null;
+    @FXML
+    private Label lbld;
+    @FXML
+    private CheckBox chkd;
 
 
     @Override
@@ -71,6 +77,13 @@ public class DetailsController implements Initializable {
             DataOutputStream dout = new DataOutputStream(fout);
             dout.write(bt,0,bt.length);
             fout.close();
+            lbld.setText("The file has been downloaded in the Download folder");
+            if (chkd.isSelected()){
+                File file = new File("C:\\Users\\" + UserName + "\\Downloads\\"+rs.getString("name"));
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            }
+
 
         }
     }

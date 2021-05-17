@@ -107,7 +107,6 @@ public class Main extends Application {
 
     }
 
-
     @FXML
     private void login(ActionEvent event) throws IOException {
         String username = "ali";

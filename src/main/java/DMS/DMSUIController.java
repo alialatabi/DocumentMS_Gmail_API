@@ -66,6 +66,8 @@ public class DMSUIController implements Initializable {
     private RadioButton rbbody;
     @FXML
     private Label noE;
+    @FXML
+    private ProgressBar prbar;
 
 
     @Override

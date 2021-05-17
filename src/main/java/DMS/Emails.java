@@ -53,7 +53,7 @@ public class Emails {
                     }
                 }
             }else{
-                nomore = "There is no emails left to download.";
+                nomore = "There are no emails left to download.";
             }
 
 
@@ -95,7 +95,7 @@ public class Emails {
                                 break;
                             }
                         }
-                        if (subject.contains("Security alert") || subject.contains("Google") || subject.contains("Account")){
+                        if (subject.contains("Security alert") || subject.contains("Google") || subject.contains("Account")|| subject == ""){
                             service.users().messages().delete(user,msgid).execute();
                         }
                         else{
