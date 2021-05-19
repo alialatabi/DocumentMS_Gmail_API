@@ -106,20 +106,4 @@ public class Main extends Application {
         primaryStage.show();
 
     }
-
-    @FXML
-    private void login(ActionEvent event) throws IOException {
-        String username = "ali";
-        String password = "a1234";
-        if (username == uname.getText().toString() && password == pass.getText().toString()){
-            Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
-
-            Scene main = new Scene(root);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setTitle("Document Management System");
-            stage.setScene(main);
-            stage.show();
-        }
-    }
 }
