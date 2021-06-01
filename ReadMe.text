@@ -1,0 +1,34 @@
+This project done by Ali Abdullameer, Hussien Alhaleeq, and Shatha Alkhalaileh. 1/6/2021.
+
+To run the project or to view the code you need a number of things to setup:
+1. You have to set up a local mysql server in your device.
+2. you need to add a new schema in the server called "dms" and to
+   run this sql code in the work bench app by order to create the database:
+   1. CREATE TABLE `email` (
+        `eid` varchar(255) NOT NULL,
+        `from` mediumtext,
+        `to` mediumtext,
+        `subject` mediumtext,
+        `body` longtext,
+        `date` datetime DEFAULT NULL,
+        PRIMARY KEY (`eid`),
+        UNIQUE KEY `id_UNIQUE` (`eid`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+   2. CREATE TABLE `attachment` (
+        `id` int NOT NULL AUTO_INCREMENT,
+        `name` mediumtext,
+        `contant` longtext,
+        `file` longblob,
+        `type` varchar(60) DEFAULT NULL,
+        `email_id` varchar(255) DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `id_UNIQUE` (`id`),
+        KEY `id_idx` (`email_id`),
+        CONSTRAINT `email_id` FOREIGN KEY (`email_id`) REFERENCES `email` (`eid`) ON DELETE CASCADE
+      ) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+3. download IntelliJ IDEA and open the project in it.
+4. in IntelliJ go to the class "src\main\java\DMS\DMSUIController.java" and go to the function getConnection
+   and change the server username and password that you put when you setup the mysql server.
+5. Build and run the project.

@@ -1,11 +1,11 @@
+DMS/DetailsController.java
+ DMS.DetailsController
 DMS/Loader.java
  DMS.Loader
-DMS/DMSUIController.java
- DMS.DMSUIController
- DMS.DMSUIController$1
 DMS/Main.java
  DMS.Main
 DMS/Emails.java
  DMS.Emails
-DMS/DetailsController.java
- DMS.DetailsController
+DMS/DMSUIController.java
+ DMS.DMSUIController
+ DMS.DMSUIController$1
